@@ -115,20 +115,26 @@ class SelicViewState extends State<SelicView> {
       rows: <DataRow>[
         DataRow(cells: <DataCell>[
           DataCell(
-            myRowDataIcon(
-              Icons.arrow_forward,
-              _interest._rateSelic.toString() +
-                  Constants.percentage +
-                  Constants.textPerYear,
+            Container(
+              width: 185,
+              child: myRowDataIcon(
+                Icons.arrow_forward,
+                _interest._rateSelic.toString() +
+                    Constants.percentage +
+                    Constants.textPerYear,
+              ),
             ),
           ),
           DataCell(
-            Text(
-              _interest._jurosBruto.toStringAsPrecision(4) +
-                  Constants.percentage +
-                  Constants.textPerMonth,
-              style: TextStyle(
-                color: Colors.white,
+            Container(
+              width: 90,
+              child: Text(
+                _interest._jurosBruto.toStringAsPrecision(4) +
+                    Constants.percentage +
+                    Constants.textPerMonth,
+                style: TextStyle(
+                  color: Colors.white,
+                ),
               ),
             ),
           ),
@@ -165,7 +171,7 @@ class SelicViewState extends State<SelicView> {
           DataCell(
             Text(
               DateFormat(Constants.formatDate).format(
-                DateTime.now().add(Duration(days: -181)),
+                DateTime.now().add(Duration(days: 181)),
               ),
               style: TextStyle(
                 color: Colors.white,
@@ -185,7 +191,7 @@ class SelicViewState extends State<SelicView> {
           DataCell(
             Text(
               DateFormat(Constants.formatDate).format(
-                DateTime.now().add(Duration(days: -361)),
+                DateTime.now().add(Duration(days: 361)),
               ),
               style: TextStyle(
                 color: Colors.white,
@@ -205,7 +211,7 @@ class SelicViewState extends State<SelicView> {
           DataCell(
             Text(
               DateFormat(Constants.formatDate).format(
-                DateTime.now().add(Duration(days: -721)),
+                DateTime.now().add(Duration(days: 721)),
               ),
               style: TextStyle(
                 color: Colors.white,
