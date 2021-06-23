@@ -2,7 +2,8 @@ import 'dart:ui';
 import 'package:One4All/Constants.dart';
 import 'package:One4All/database/dao/Account.dart';
 import 'package:One4All/models/Account.dart';
-import 'package:One4All/screens/account/AccountList.dart';
+import 'package:One4All/screens/Selic-CDI/Selic.dart';
+//import 'package:One4All/screens/account/AccountList.dart';
 import 'package:flutter/material.dart';
 
 // Criar o consumo da moto.
@@ -48,7 +49,7 @@ class One4AllApp extends StatelessWidget {
           textTheme: ButtonTextTheme.primary,
         ),
       ),
-      home: AccountList(),
+      home: SelicView(),
     );
   }
 }
