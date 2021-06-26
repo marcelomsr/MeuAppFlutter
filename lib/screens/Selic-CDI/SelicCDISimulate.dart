@@ -4,6 +4,7 @@ import 'package:One4All/components/MessageDialog.dart';
 import 'package:One4All/Constants.dart';
 import 'package:One4All/components/TextEditor.dart';
 import 'package:flutter/material.dart';
+import 'package:One4All/SharedPreferences.dart';
 
 class SelicCDISimulate extends StatefulWidget {
   final double taxaSemImposto;
@@ -35,14 +36,20 @@ class SelicCDISimulateState extends State<SelicCDISimulate> {
             TextEditor(
               label: "Start Value",
               controller: _controllerFieldStartValue = TextEditingController(
-                text: '1000',
+                text: SharedPref.getInt("startValue")
+                    .then((value) =>
+                        _controllerFieldStartValue.text = value.toString())
+                    .toString(),
               ),
             ),
             TextEditor(
               label: "Duration (months)",
               controller: _controllerFieldNumberOfMonths =
                   TextEditingController(
-                text: '5',
+                text: SharedPref.getInt("durationMonths")
+                    .then((value) =>
+                        _controllerFieldNumberOfMonths.text = value.toString())
+                    .toString(),
               ),
             ),
             ElevatedButton(
@@ -52,6 +59,9 @@ class SelicCDISimulateState extends State<SelicCDISimulate> {
                     double.tryParse(_controllerFieldStartValue.text);
                 int numeroDeMeses =
                     int.tryParse(_controllerFieldNumberOfMonths.text);
+
+                SharedPref.setInt("startValue", valorInicial.toInt());
+                SharedPref.setInt("durationMonths", numeroDeMeses);
 
                 double valorSemImposto = 1 + widget.taxaSemImposto / 100;
 

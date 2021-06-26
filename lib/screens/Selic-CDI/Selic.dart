@@ -3,6 +3,7 @@ import 'package:One4All/components/TextEditor.dart';
 import 'package:One4All/screens/Selic-CDI/SelicCDISimulate.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
+import 'package:One4All/SharedPreferences.dart';
 
 class SelicView extends StatefulWidget {
   @override
@@ -45,11 +46,18 @@ class SelicViewState extends State<SelicView> {
                 TextEditor(
                   label: Constants.labelSelic,
                   controller: _controllerSelicValue = TextEditingController(
-                    text: _interest._rateSelic.toString(),
+                    text: SharedPref.getDouble("rateSelic")
+                        .then((value) =>
+                            _controllerSelicValue.text = value.toString())
+                        .toString(),
                   ),
                   inputType: TextInputType.number,
                   textAlign: TextAlign.center,
                   functionCompleteEditing: () {
+                    SharedPref.setDouble(
+                      "rateSelic",
+                      double.tryParse(_controllerSelicValue.text),
+                    );
                     _interest = CalculaJuros(
                       double.tryParse(_controllerSelicValue.text),
                       double.tryParse(_controllerCDIValue.text),
@@ -60,11 +68,18 @@ class SelicViewState extends State<SelicView> {
                 TextEditor(
                   label: Constants.labelCDI,
                   controller: _controllerCDIValue = TextEditingController(
-                    text: _interest._rateCDI.toString(),
+                    text: SharedPref.getDouble("CDIValue")
+                        .then((value) =>
+                            _controllerCDIValue.text = value.toString())
+                        .toString(),
                   ),
                   inputType: TextInputType.number,
                   textAlign: TextAlign.center,
                   functionCompleteEditing: () {
+                    SharedPref.setDouble(
+                      "CDIValue",
+                      double.tryParse(_controllerCDIValue.text),
+                    );
                     _interest = CalculaJuros(
                       double.tryParse(_controllerSelicValue.text),
                       double.tryParse(_controllerCDIValue.text),
