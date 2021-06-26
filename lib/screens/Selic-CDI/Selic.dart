@@ -17,8 +17,8 @@ class SelicViewState extends State<SelicView> {
   TextEditingController _controllerCDIValue;
 
   CalculaJuros _interest = CalculaJuros(
-    Constants.rateSelic,
-    Constants.rateCDI,
+    4.0,
+    100,
   );
 
   @override
