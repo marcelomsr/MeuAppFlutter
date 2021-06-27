@@ -2,7 +2,7 @@ import 'package:meu_app_flutter/database/dao/Account.dart';
 import 'package:meu_app_flutter/models/Account.dart';
 import 'package:meu_app_flutter/screens/account/AccountItem.dart';
 import 'package:meu_app_flutter/screens/account/Form.dart';
-import 'package:meu_app_flutter/Constants.dart';
+import 'package:meu_app_flutter/utils/Constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter/cupertino.dart';

@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:meu_app_flutter/components/MessageDialog.dart';
-import 'package:meu_app_flutter/Constants.dart';
+import 'package:meu_app_flutter/utils/Constants.dart';
 import 'package:meu_app_flutter/components/TextEditor.dart';
 import 'package:flutter/material.dart';
 import 'package:meu_app_flutter/Utils/SharedPreferences.dart';

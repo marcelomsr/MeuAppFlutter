@@ -1,4 +1,4 @@
-import 'package:meu_app_flutter/Constants.dart';
+import 'package:meu_app_flutter/utils/Constants.dart';
 import 'package:meu_app_flutter/components/TextEditor.dart';
 import 'package:meu_app_flutter/screens/Selic-CDI/SelicCDISimulate.dart';
 import 'package:intl/intl.dart';
@@ -23,9 +23,12 @@ class SelicViewState extends State<SelicView> {
   void initState() {
     super.initState();
 
-    taxaSelic = UserSimplePreferences.obterTaxaSelic().toString() ?? '';
-    porcentagemCDI =
-        UserSimplePreferences.obterPorcentagemCDI().toString() ?? '';
+    taxaSelic = UserSimplePreferences.obterTaxaSelic() == null
+        ? '4.25'
+        : UserSimplePreferences.obterTaxaSelic().toString();
+    porcentagemCDI = UserSimplePreferences.obterPorcentagemCDI() == null
+        ? '100'
+        : UserSimplePreferences.obterPorcentagemCDI().toString();
   }
 
   CalculaJuros _interest = CalculaJuros(

@@ -1,4 +1,4 @@
-import 'package:meu_app_flutter/Constants.dart';
+import 'package:meu_app_flutter/utils/Constants.dart';
 import 'package:meu_app_flutter/components/TextEditor.dart';
 import 'package:meu_app_flutter/database/dao/Account.dart';
 import 'package:meu_app_flutter/models/Account.dart';
