@@ -1,9 +1,9 @@
-import 'package:One4All/Constants.dart';
-import 'package:One4All/components/TextEditor.dart';
-import 'package:One4All/screens/Selic-CDI/SelicCDISimulate.dart';
+import 'package:meu_app_flutter/Constants.dart';
+import 'package:meu_app_flutter/components/TextEditor.dart';
+import 'package:meu_app_flutter/screens/Selic-CDI/SelicCDISimulate.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
-import 'package:One4All/Utils/SharedPreferences.dart';
+import 'package:meu_app_flutter/Utils/SharedPreferences.dart';
 
 class SelicView extends StatefulWidget {
   @override

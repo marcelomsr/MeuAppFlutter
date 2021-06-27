@@ -1,4 +1,4 @@
-import 'package:One4All/Constants.dart';
+import 'package:meu_app_flutter/Constants.dart';
 import 'package:flutter/material.dart';
 
 class TextEditor extends StatefulWidget {

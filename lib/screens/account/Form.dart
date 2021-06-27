@@ -1,7 +1,7 @@
-import 'package:One4All/Constants.dart';
-import 'package:One4All/components/TextEditor.dart';
-import 'package:One4All/database/dao/Account.dart';
-import 'package:One4All/models/Account.dart';
+import 'package:meu_app_flutter/Constants.dart';
+import 'package:meu_app_flutter/components/TextEditor.dart';
+import 'package:meu_app_flutter/database/dao/Account.dart';
+import 'package:meu_app_flutter/models/Account.dart';
 import 'package:flutter/material.dart';
 
 class AccountForm extends StatefulWidget {

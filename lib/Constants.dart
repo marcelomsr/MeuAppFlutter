@@ -1,7 +1,7 @@
-import 'package:One4All/components/MessageDialog.dart';
-import 'package:One4All/screens/selic-CDI/Selic.dart';
-import 'package:One4All/screens/account/AccountList.dart';
-import 'package:One4All/screens/investment/Price.dart';
+import 'package:meu_app_flutter/components/MessageDialog.dart';
+import 'package:meu_app_flutter/screens/selic-CDI/Selic.dart';
+import 'package:meu_app_flutter/screens/account/AccountList.dart';
+import 'package:meu_app_flutter/screens/investment/Price.dart';
 import 'package:flutter/material.dart';
 import 'package:package_info/package_info.dart';
 

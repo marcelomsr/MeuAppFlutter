@@ -1,4 +1,4 @@
-name: One4All
+name: meu_app_flutter
 description: My Flutter project.
 
 # The following defines the version and build number for your application.
@@ -11,7 +11,7 @@ description: My Flutter project.
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 1.1.2
+version: 1.1.3
 
 environment:
   sdk: ">=2.2.2 <3.0.0"

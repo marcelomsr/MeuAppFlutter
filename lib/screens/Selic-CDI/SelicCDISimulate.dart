@@ -1,10 +1,10 @@
 import 'dart:math';
 
-import 'package:One4All/components/MessageDialog.dart';
-import 'package:One4All/Constants.dart';
-import 'package:One4All/components/TextEditor.dart';
+import 'package:meu_app_flutter/components/MessageDialog.dart';
+import 'package:meu_app_flutter/Constants.dart';
+import 'package:meu_app_flutter/components/TextEditor.dart';
 import 'package:flutter/material.dart';
-import 'package:One4All/Utils/SharedPreferences.dart';
+import 'package:meu_app_flutter/Utils/SharedPreferences.dart';
 
 class SelicCDISimulate extends StatefulWidget {
   final double taxaSemImposto;

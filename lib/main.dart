@@ -1,9 +1,9 @@
 import 'dart:ui';
-import 'package:One4All/Constants.dart';
-import 'package:One4All/database/dao/Account.dart';
-import 'package:One4All/models/Account.dart';
-import 'package:One4All/screens/Selic-CDI/Selic.dart';
-//import 'package:One4All/screens/account/AccountList.dart';
+import 'package:meu_app_flutter/Constants.dart';
+import 'package:meu_app_flutter/database/dao/Account.dart';
+import 'package:meu_app_flutter/models/Account.dart';
+import 'package:meu_app_flutter/screens/Selic-CDI/Selic.dart';
+//import 'package:meu_app_flutter/screens/account/AccountList.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -14,7 +14,7 @@ import 'Utils/SharedPreferences.dart';
 // Criar cotaçáo das ações.
 // Criar notificações.
 // Criar JI e exibir as notificações.
-// Alterar o nome do aplicativo para MeuAppFlutter e o nome dos packages para meu_app_flutter.
+// Alterar o nome do aplicativo para MeuAppFlutter.
 // Simulador e registrador de empréstimos.
 // Seleção de idiomas
 // Registro de peso
@@ -28,7 +28,7 @@ Future main() async {
 
   await UserSimplePreferences.init();
 
-  runApp(One4AllApp());
+  runApp(MeuAplicativoFlutterApp());
 
   AccountDao().findAll().then((accounts) {
     //print(accounts.length);
@@ -47,7 +47,7 @@ void _insertDefaultContent() {
       'microsoftpass', 'Account for microsoft services'));
 }
 
-class One4AllApp extends StatelessWidget {
+class MeuAplicativoFlutterApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

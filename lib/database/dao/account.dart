@@ -1,6 +1,6 @@
-import 'package:One4All/models/Account.dart';
+import 'package:meu_app_flutter/models/Account.dart';
 import 'package:sqflite/sqflite.dart';
-import 'package:One4All/database/app_database.dart';
+import 'package:meu_app_flutter/database/app_database.dart';
 
 class AccountDao {
   static const String tableSql = 'CREATE TABLE $_tableName( '
