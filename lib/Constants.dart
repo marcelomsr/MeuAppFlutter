@@ -3,10 +3,9 @@ import 'package:One4All/screens/selic-CDI/Selic.dart';
 import 'package:One4All/screens/account/AccountList.dart';
 import 'package:One4All/screens/investment/Price.dart';
 import 'package:flutter/material.dart';
+import 'package:package_info/package_info.dart';
 
 class Constants {
-  static const version = 'Version 1.1.1';
-
   static const titleAppBarAccounts = 'Accounts';
   static const textNoNameAccounts = 'Ah';
   static const passwordCopied = 'Password copied.';
@@ -73,13 +72,14 @@ class Constants {
           ),
           ListTile(
             title: Text(Constants.about),
-            onTap: () {
+            onTap: () async {
+              PackageInfo packageInfo = await PackageInfo.fromPlatform();
               showDialog(
                 context: context,
                 builder: (BuildContext context) {
                   return MessageDialog(
                     title: Constants.about,
-                    content: Constants.version,
+                    content: packageInfo.version,
                     textCloseButton: Constants.close,
                   );
                 },
