@@ -10,6 +10,7 @@ class TextEditor extends StatefulWidget {
   final int maxLines;
   final TextInputType inputType;
   final TextAlign textAlign;
+  final Function functionOnChanged;
   final Function functionCompleteEditing;
 
   TextEditor({
@@ -21,6 +22,7 @@ class TextEditor extends StatefulWidget {
     this.maxLines = 1,
     this.inputType = TextInputType.text,
     this.textAlign = TextAlign.start,
+    this.functionOnChanged,
     this.functionCompleteEditing,
   });
 
@@ -42,6 +44,7 @@ class TextEditorState extends State<TextEditor> {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: TextFormField(
+        onChanged: widget.functionOnChanged,
         onEditingComplete: widget.functionCompleteEditing,
         textAlign: widget.textAlign,
         maxLines: widget.maxLines,

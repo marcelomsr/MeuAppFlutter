@@ -3,7 +3,7 @@ import 'package:One4All/components/TextEditor.dart';
 import 'package:One4All/screens/Selic-CDI/SelicCDISimulate.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
-import 'package:One4All/SharedPreferences.dart';
+import 'package:One4All/Utils/SharedPreferences.dart';
 
 class SelicView extends StatefulWidget {
   @override
@@ -16,8 +16,20 @@ class SelicViewState extends State<SelicView> {
   TextEditingController _controllerSelicValue;
   TextEditingController _controllerCDIValue;
 
+  String taxaSelic = '';
+  String porcentagemCDI = '';
+
+  @override
+  void initState() {
+    super.initState();
+
+    taxaSelic = UserSimplePreferences.obterTaxaSelic().toString() ?? '';
+    porcentagemCDI =
+        UserSimplePreferences.obterPorcentagemCDI().toString() ?? '';
+  }
+
   CalculaJuros _interest = CalculaJuros(
-    4.0,
+    4.25,
     100,
   );
 
@@ -32,6 +44,9 @@ class SelicViewState extends State<SelicView> {
         child: Padding(
           padding: EdgeInsets.all(16.0),
           child: Container(
+            /*
+            Esse decoration faz um desenho azul, com borda arredondada e
+            cor gradient
             decoration: BoxDecoration(
               borderRadius: Constants.borderRadius,
               color: Color(0xff5a348b),
@@ -39,25 +54,23 @@ class SelicViewState extends State<SelicView> {
                 colors: [Color(0xff8d70fe), Color(0xff2da9ef)],
                 begin: Alignment.centerRight,
                 end: Alignment(-1.0, -1.0),
-              ), //Gradient
-            ),
+              ),
+            ),*/
             child: Column(
               children: <Widget>[
                 TextEditor(
                   label: Constants.labelSelic,
                   controller: _controllerSelicValue = TextEditingController(
-                    text: SharedPref.getDouble("rateSelic")
-                        .then((value) =>
-                            _controllerSelicValue.text = value.toString())
-                        .toString(),
+                    text: this.taxaSelic,
                   ),
                   inputType: TextInputType.number,
                   textAlign: TextAlign.center,
-                  functionCompleteEditing: () {
-                    SharedPref.setDouble(
-                      "rateSelic",
-                      double.tryParse(_controllerSelicValue.text),
-                    );
+                  functionCompleteEditing: () async {
+                    // Altera os valores que são exibidos nos campos
+                    this.taxaSelic = _controllerSelicValue.text;
+                    this.porcentagemCDI = _controllerCDIValue.text;
+                    await UserSimplePreferences.definirTaxaSelic(
+                        double.tryParse(_controllerSelicValue.text));
                     _interest = CalculaJuros(
                       double.tryParse(_controllerSelicValue.text),
                       double.tryParse(_controllerCDIValue.text),
@@ -68,18 +81,15 @@ class SelicViewState extends State<SelicView> {
                 TextEditor(
                   label: Constants.labelCDI,
                   controller: _controllerCDIValue = TextEditingController(
-                    text: SharedPref.getDouble("CDIValue")
-                        .then((value) =>
-                            _controllerCDIValue.text = value.toString())
-                        .toString(),
+                    text: this.porcentagemCDI,
                   ),
                   inputType: TextInputType.number,
                   textAlign: TextAlign.center,
-                  functionCompleteEditing: () {
-                    SharedPref.setDouble(
-                      "CDIValue",
-                      double.tryParse(_controllerCDIValue.text),
-                    );
+                  functionCompleteEditing: () async {
+                    this.taxaSelic = _controllerSelicValue.text;
+                    this.porcentagemCDI = _controllerCDIValue.text;
+                    await UserSimplePreferences.definirPorcentagemCDI(
+                        double.tryParse(_controllerCDIValue.text));
                     _interest = CalculaJuros(
                       double.tryParse(_controllerSelicValue.text),
                       double.tryParse(_controllerCDIValue.text),

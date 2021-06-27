@@ -5,18 +5,29 @@ import 'package:One4All/models/Account.dart';
 import 'package:One4All/screens/Selic-CDI/Selic.dart';
 //import 'package:One4All/screens/account/AccountList.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
+import 'Utils/SharedPreferences.dart';
 
 // Criar o consumo da moto.
 // Criar os valores dos rendimentos mensais com gráficos.
 // Criar cotaçáo das ações.
 // Criar notificações.
 // Criar JI e exibir as notificações.
-// Alterar o nome do aplicativo. One4All
+// Alterar o nome do aplicativo para MeuAppFlutter e o nome dos packages para meu_app_flutter.
 // Simulador e registrador de empréstimos.
 // Seleção de idiomas
 // Registro de peso
 
-void main() {
+Future main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
+
+  await UserSimplePreferences.init();
+
   runApp(One4AllApp());
 
   AccountDao().findAll().then((accounts) {
