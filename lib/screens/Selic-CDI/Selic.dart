@@ -18,23 +18,24 @@ class SelicViewState extends State<SelicView> {
 
   String taxaSelic = '';
   String porcentagemCDI = '';
+  CalculaJuros _interest;
 
   @override
   void initState() {
     super.initState();
 
     taxaSelic = UserSimplePreferences.obterTaxaSelic() == null
-        ? '4.25'
+        ? '5.25'
         : UserSimplePreferences.obterTaxaSelic().toString();
     porcentagemCDI = UserSimplePreferences.obterPorcentagemCDI() == null
         ? '100'
         : UserSimplePreferences.obterPorcentagemCDI().toString();
-  }
 
-  CalculaJuros _interest = CalculaJuros(
-    4.25,
-    100,
-  );
+    _interest = CalculaJuros(
+      double.tryParse(taxaSelic),
+      double.tryParse(porcentagemCDI),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
