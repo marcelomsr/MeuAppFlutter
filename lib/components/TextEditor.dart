@@ -12,6 +12,7 @@ class TextEditor extends StatefulWidget {
   final TextAlign textAlign;
   final Function functionOnChanged;
   final Function functionCompleteEditing;
+  final FocusNode onFocusNode;
 
   TextEditor({
     this.controller,
@@ -24,6 +25,7 @@ class TextEditor extends StatefulWidget {
     this.textAlign = TextAlign.start,
     this.functionOnChanged,
     this.functionCompleteEditing,
+    this.onFocusNode,
   });
 
   @override
@@ -46,6 +48,7 @@ class TextEditorState extends State<TextEditor> {
       child: TextFormField(
         onChanged: widget.functionOnChanged,
         onEditingComplete: widget.functionCompleteEditing,
+        focusNode: widget.onFocusNode,
         textAlign: widget.textAlign,
         maxLines: widget.maxLines,
         controller: widget.controller,
