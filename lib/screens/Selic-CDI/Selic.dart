@@ -19,9 +19,25 @@ class SelicViewState extends State<SelicView> {
   String taxaSelic = '';
   String porcentagemCDI = '';
   CalculaJuros _interest;
+  var focusNodeSelic = FocusNode();
+  var focusNodeCDI = FocusNode();
 
   @override
   void initState() {
+    focusNodeSelic.addListener(() {
+      print(focusNodeSelic.hasFocus);
+      if (!focusNodeSelic.hasFocus) {
+        this.definirValores();
+      }
+    });
+
+    focusNodeCDI.addListener(() {
+      print(focusNodeCDI.hasFocus);
+      if (!focusNodeCDI.hasFocus) {
+        this.definirValores();
+      }
+    });
+
     super.initState();
 
     taxaSelic = UserSimplePreferences.obterTaxaSelic() == null
@@ -69,18 +85,8 @@ class SelicViewState extends State<SelicView> {
                   ),
                   inputType: TextInputType.number,
                   textAlign: TextAlign.center,
-                  functionCompleteEditing: () async {
-                    // Altera os valores que são exibidos nos campos
-                    this.taxaSelic = _controllerSelicValue.text;
-                    this.porcentagemCDI = _controllerCDIValue.text;
-                    await UserSimplePreferences.definirTaxaSelic(
-                        double.tryParse(_controllerSelicValue.text));
-                    _interest = CalculaJuros(
-                      double.tryParse(_controllerSelicValue.text),
-                      double.tryParse(_controllerCDIValue.text),
-                    );
-                    setState(() {});
-                  },
+                  onFocusNode: focusNodeSelic,
+                  //functionCompleteEditing: definirValores,
                 ),
                 TextEditor(
                   label: Constants.labelCDI,
@@ -89,17 +95,8 @@ class SelicViewState extends State<SelicView> {
                   ),
                   inputType: TextInputType.number,
                   textAlign: TextAlign.center,
-                  functionCompleteEditing: () async {
-                    this.taxaSelic = _controllerSelicValue.text;
-                    this.porcentagemCDI = _controllerCDIValue.text;
-                    await UserSimplePreferences.definirPorcentagemCDI(
-                        double.tryParse(_controllerCDIValue.text));
-                    _interest = CalculaJuros(
-                      double.tryParse(_controllerSelicValue.text),
-                      double.tryParse(_controllerCDIValue.text),
-                    );
-                    setState(() {});
-                  },
+                  onFocusNode: focusNodeCDI,
+                  //functionCompleteEditing: definirValores,
                 ),
                 _createDataTable(),
                 ElevatedButton(
@@ -129,6 +126,24 @@ class SelicViewState extends State<SelicView> {
         ),
       ),
     );
+  }
+
+  Future<dynamic> definirValores() async {
+    // Altera os valores que são exibidos nos campos
+    this.taxaSelic = _controllerSelicValue.text;
+    this.porcentagemCDI = _controllerCDIValue.text;
+
+    await UserSimplePreferences.definirTaxaSelic(
+        double.tryParse(this.taxaSelic));
+    await UserSimplePreferences.definirPorcentagemCDI(
+        double.tryParse(this.porcentagemCDI));
+
+    _interest = CalculaJuros(
+      double.tryParse(this.taxaSelic),
+      double.tryParse(this.porcentagemCDI),
+    );
+
+    setState(() {});
   }
 
   Widget _createDataTable() {
